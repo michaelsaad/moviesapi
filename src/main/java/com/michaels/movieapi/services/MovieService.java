@@ -17,15 +17,17 @@ public class MovieService {
         return this.movieRepository.findAll();
     }
 
-    public Optional<MovieEntity> getMovieById(Long id) {
+    public MovieEntity getMovieByTitle(String title) {
+        return movieRepository.findByTitle(title);
+    }
+    public Optional<MovieEntity> getMovieById(String id) {
         return movieRepository.findById(id);
     }
-
     public void addMovie(MovieEntity movie) {
         movieRepository.save(movie);
     }
 
-    public void updateMovie(Long id, MovieEntity movie) {
+    public void updateMovie(String id, MovieEntity movie) {
         Optional<MovieEntity> movieOptional = movieRepository.findById(id);
         if (movieOptional.isPresent()) {
             MovieEntity movieEntity = movieOptional.get();
@@ -36,7 +38,7 @@ public class MovieService {
         }
 
     }
-    public void deleteMovie(Long id) {
+    public void deleteMovie(String id) {
         movieRepository.deleteById(id);
     }
 

@@ -2,11 +2,13 @@ package com.michaels.movieapi.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
 @Entity
+@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,8 +16,8 @@ import lombok.NoArgsConstructor;
 public class MovieEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     @Column(name = "title")
     private String title;
