@@ -3,6 +3,9 @@ package com.michaels.movieapi.services;
 import com.michaels.movieapi.entities.MovieEntity;
 import com.michaels.movieapi.repositores.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +19,10 @@ public class MovieService {
     public List<MovieEntity> getAllMovies() {
         return this.movieRepository.findAll();
     }
-
+    public List<MovieEntity> getMovies(int page, int limit) {
+        Pageable pageable = PageRequest.of(page - 1, limit, Sort.by("createdAt").ascending());
+        return movieRepository.findAll(pageable).getContent();
+    }
     public MovieEntity getMovieByTitle(String title) {
         return movieRepository.findByTitle(title);
     }

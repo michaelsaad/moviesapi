@@ -4,7 +4,6 @@ import com.michaels.movieapi.entities.MovieEntity;
 import com.michaels.movieapi.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -18,16 +17,20 @@ public class MovieController {
     public List<MovieEntity> getAllMovies() {
         return movieService.getAllMovies();
     }
-
-    @GetMapping("/title/{title}")
+    @GetMapping("/getmovies")
+    public List<MovieEntity> getMovies(@RequestParam(defaultValue = "1") int page,
+                                 @RequestParam(defaultValue = "10") int limit) {
+        return movieService.getMovies(page, limit);
+    }
+    @GetMapping("/getbytitle/{title}")
     public MovieEntity getMovieByTitle(@PathVariable String title) {
         return movieService.getMovieByTitle(title);
     }
-    @GetMapping("/id/{id}")
+    @GetMapping("/getbyid/{id}")
     public Optional<MovieEntity> getMovieById(@PathVariable String id) {
         return movieService.getMovieById(id);
     }
-    @PostMapping("addmovie")
+    @PostMapping("/addmovie")
     public void addMovie(@RequestBody MovieEntity movie) {
         movieService.addMovie(movie);
     }
