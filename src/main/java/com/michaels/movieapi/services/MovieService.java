@@ -2,7 +2,7 @@ package com.michaels.movieapi.services;
 
 import com.michaels.movieapi.entities.MovieEntity;
 import com.michaels.movieapi.repositores.MovieRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -11,10 +11,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class MovieService {
 
-    @Autowired
-    private MovieRepository movieRepository;
+
+    private final MovieRepository movieRepository;
+
+
 
     public List<MovieEntity> getAllMovies() {
         return this.movieRepository.findAll();

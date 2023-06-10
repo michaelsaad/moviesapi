@@ -2,16 +2,18 @@ package com.michaels.movieapi.controllers;
 
 import com.michaels.movieapi.entities.MovieEntity;
 import com.michaels.movieapi.services.MovieService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/movies")
+@RequiredArgsConstructor
 public class MovieController {
-    @Autowired
-    private MovieService movieService;
+
+
+    private final MovieService movieService;
 
     @GetMapping("/getall")
     public List<MovieEntity> getAllMovies() {
