@@ -18,8 +18,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "movies")
 public class MovieEntity {
 
